@@ -59,6 +59,8 @@ body.locked{overflow:hidden}
 #cursorDot{position:fixed;z-index:500;width:4px;height:4px;border-radius:50%;background:var(--teal);pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--teal)}
 #cursor.hot{width:58px;height:58px;background:rgba(46,230,200,.08);border-color:var(--teal)}
 @media (pointer:coarse){#cursor,#cursorDot{display:none}}
+@media (pointer:coarse){.magnet,.lensbig,.tilt,.vcard,.pcard,.ocard,.lcard{touch-action:manipulation;-webkit-tap-highlight-color:transparent}}
+@media (pointer:fine){.magnet,.tilt{touch-action:none}}
 
 /* ============ BOOT GATE ============ */
 #boot{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s}
@@ -512,15 +514,15 @@ body.comfy .lenshint{font-size:15.5px}
 <section id="lens" class="sec">
   <div class="wrap">
     <div class="kick"><span class="scr" data-text="THE LENS // 04">THE LENS // 04</span></div>
-    <h2 class="reveal"><span class="mline"><span>Same code.</span></span><span class="mline"><span><span class="g scr" data-text="Your numbers.">Your numbers.</span></span></span></h2>
-    <p class="lead reveal" data-d="1">The machine is one. The payoff isn't. Choose the lens you're buying through — the deck re-renders itself for you.</p>
+    <h2 class="reveal"><span class="mline"><span>See the numbers</span></span><span class="mline"><span><span class="g scr" data-text="for your business.">for your business.</span></span></span></h2>
+    <p class="lead reveal" data-d="1">Below are three real sets of numbers. Tap the one that matches what you do — the deck will show you only the numbers that matter to <b style="color:#fff">you</b>.</p>
 
     <div class="lenspick reveal" data-d="2">
-      <div class="lenspick-label">PICK YOUR LENS — TAP THE ONE THAT'S YOU</div>
-      <button class="lensbig on magnet" data-l="salon"><span class="lb-ic">◇</span><span class="lb-t">I own or run a <b>salon</b></span><span class="lb-d">MORE FACIALS CONVERTED · HIGHER TICKET · CLIENTS WHO TRUST THE RECOMMENDATION</span></button>
-      <button class="lensbig magnet" data-l="clinic"><span class="lb-ic">✚</span><span class="lb-t">I run a <b>skin clinic</b></span><span class="lb-d">DERMAT TRUST · MORE TREATMENTS ACCEPTED · DOCUMENTED OUTCOMES</span></button>
-      <button class="lensbig magnet" data-l="brand"><span class="lb-ic">▣</span><span class="lb-t">I have a <b>treatment brand</b></span><span class="lb-d">MORE SALES · INDUSTRY ADOPTION · RETAILER CHANNELS</span></button>
-      <p class="lenshint">👉 <b>How it works:</b> just tap <b>one</b> of the three above — the numbers below will change to match <b>your</b> business. Nothing else to do.</p>
+      <div class="lenspick-label">TAP THE ONE THAT'S YOU</div>
+      <button class="lensbig on magnet" data-l="salon"><span class="lb-ic">◇</span><span class="lb-t">I own or run a <b>salon</b></span><span class="lb-d">I want more facial bookings, higher bills, and clients who come back.</span></button>
+      <button class="lensbig magnet" data-l="clinic"><span class="lb-ic">✚</span><span class="lb-t">I run a <b>skin clinic</b></span><span class="lb-d">I want patients to trust the treatment plan, say yes more often, and come back.</span></button>
+      <button class="lensbig magnet" data-l="brand"><span class="lb-ic">▣</span><span class="lb-t">I have a <b>treatment brand</b></span><span class="lb-d">I want my products to be the ones clinicians and salons actually recommend.</span></button>
+      <p class="lenshint">👉 <b>Just tap one</b> — the numbers below will change to show what this machine can do for <b>your</b> business.</p>
     </div>
 
     <div class="lensview on" id="lv-salon">
