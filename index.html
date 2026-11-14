@@ -54,6 +54,15 @@ body.locked{overflow:hidden}
 .chipbtn.on{color:var(--teal);border-color:#1d5f4e;box-shadow:0 0 18px -4px rgba(46,230,200,.5)}
 .chipbtn.on .d{background:var(--teal);box-shadow:0 0 8px var(--teal);animation:blip 1.6s infinite}
 
+/* ============ MOBILE TOUCH FIX ============ */
+@media (pointer:coarse){
+  a,button,.lensbig,.subj,.bbtn,.chipbtn,.rail a,.tcontact,.dockpanel{
+    position:relative; z-index:5;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+}
+
 /* ============ BOOT GATE ============ */
 #boot{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s}
 #boot.off{opacity:0;visibility:hidden}
