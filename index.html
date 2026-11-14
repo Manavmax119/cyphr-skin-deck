@@ -54,14 +54,6 @@ body.locked{overflow:hidden}
 .chipbtn.on{color:var(--teal);border-color:#1d5f4e;box-shadow:0 0 18px -4px rgba(46,230,200,.5)}
 .chipbtn.on .d{background:var(--teal);box-shadow:0 0 8px var(--teal);animation:blip 1.6s infinite}
 
-/* ============ CUSTOM CURSOR ============ */
-#cursor{position:fixed;z-index:500;width:34px;height:34px;border-radius:50%;border:1px solid rgba(77,227,255,.6);pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .25s,height .25s,border-color .25s,background .25s,opacity .3s}
-#cursorDot{position:fixed;z-index:500;width:4px;height:4px;border-radius:50%;background:var(--teal);pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--teal)}
-#cursor.hot{width:58px;height:58px;background:rgba(46,230,200,.08);border-color:var(--teal)}
-@media (pointer:coarse){#cursor,#cursorDot{display:none}}
-@media (pointer:coarse){.magnet,.lensbig,.tilt,.vcard,.pcard,.ocard,.lcard{touch-action:manipulation;-webkit-tap-highlight-color:transparent}}
-@media (pointer:fine){.magnet,.tilt{touch-action:none}}
-
 /* ============ BOOT GATE ============ */
 #boot{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s}
 #boot.off{opacity:0;visibility:hidden}
@@ -379,7 +371,6 @@ body.comfy .lenshint{font-size:15.5px}
 <div class="aurora"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div></div>
 <div class="grain"></div>
 <div id="prog"></div>
-<div id="cursor"></div><div id="cursorDot"></div>
 
 <!-- BOOT GATE -->
 <div id="boot">
@@ -419,9 +410,9 @@ body.comfy .lenshint{font-size:15.5px}
       </h1>
       <div class="hsub reveal" data-d="3">AI SKIN ANALYSIS · <b>KOREAN HIGH-IMAGING CORE</b> · TRAINED FOR <b>INDIAN SKIN</b></div>
       <div class="cta reveal" data-d="4">
-        <a class="btn p magnet" href="#console">▶ RUN A SCAN</a>
-        <a class="btn magnet" href="#lens">PICK YOUR LENS</a>
-        <a class="btn magnet" href="tel:+919650804836">☎ BOOK A DEMO</a>
+        <a class="btn p " href="#console">▶ RUN A SCAN</a>
+        <a class="btn " href="#lens">PICK YOUR LENS</a>
+        <a class="btn " href="tel:+919650804836">☎ BOOK A DEMO</a>
       </div>
       <div class="hudrow reveal" data-d="5">
         <span class="hc">OUTPUT · <b>SKIN SCORE</b></span>
@@ -442,9 +433,9 @@ body.comfy .lenshint{font-size:15.5px}
     <h2 class="reveal"><span class="mline"><span>Every consultation today runs on</span></span><span class="mline"><span><span class="g scr" data-text="guesswork.">guesswork.</span></span></span></h2>
     <p class="lead reveal" data-d="1">Salons, clinics and brands all sell skin — but almost none of them can actually <i>read</i> it. The mirror doesn't surface the data. So recommendations are guessed, routines are borrowed, and trust is spent.</p>
     <div class="pgrid">
-      <div class="pcard c1 tilt reveal" data-d="1"><div class="n">SIGNAL 01</div><h3>Blind consultations</h3><p>Visually-based assessment misses what the mirror ignores: barrier state, under-surface pigment, hydration depth. The guess is sold as expertise.</p></div>
-      <div class="pcard c2 tilt reveal" data-d="2"><div class="n">SIGNAL 02</div><h3>Borrowed routines</h3><p>Clients "skin-cycle" someone else's viral regimen — and break out. Wrong matches damage trust faster than no treatment at all.</p></div>
-      <div class="pcard c3 tilt reveal" data-d="3"><div class="n">SIGNAL 03</div><h3>Trust, unmeasured</h3><p>When a recommendation can't be backed by data, the sale depends on persuasion. Data removes the persuasion. The client believes the readout.</p></div>
+      <div class="pcard c1 reveal" data-d="1"><div class="n">SIGNAL 01</div><h3>Blind consultations</h3><p>Visually-based assessment misses what the mirror ignores: barrier state, under-surface pigment, hydration depth. The guess is sold as expertise.</p></div>
+      <div class="pcard c2 reveal" data-d="2"><div class="n">SIGNAL 02</div><h3>Borrowed routines</h3><p>Clients "skin-cycle" someone else's viral regimen — and break out. Wrong matches damage trust faster than no treatment at all.</p></div>
+      <div class="pcard c3 reveal" data-d="3"><div class="n">SIGNAL 03</div><h3>Trust, unmeasured</h3><p>When a recommendation can't be backed by data, the sale depends on persuasion. Data removes the persuasion. The client believes the readout.</p></div>
     </div>
     <p class="pline reveal" data-d="3">The missing layer isn't another bottle or machine. It's <b>the readout</b> — <span class="x">your skin's code, decoded.</span></p>
   </div>
@@ -456,9 +447,9 @@ body.comfy .lenshint{font-size:15.5px}
     <div class="kick"><span class="scr" data-text="THE SYSTEM // 02">THE SYSTEM // 02</span></div>
     <h2 class="reveal"><span class="mline"><span>One scan. Three outputs.</span></span><span class="mline"><span><span class="g scr" data-text="Zero guesswork.">Zero guesswork.</span></span></span></h2>
     <div class="codegrid">
-      <div class="ocard tilt reveal" data-d="1"><div class="ol">OUTPUT 01</div><h3>Skin Score</h3><p>Health, quantified. A single number the client can track — and watch move — over time. It turns "it's better" into "74 → 82".</p><div class="ov">SCALE · 0–100 · TRACKED PER SESSION</div></div>
-      <div class="ocard tilt reveal" data-d="2"><div class="ol">OUTPUT 02</div><h3>Biological Age</h3><p>Not calendar age — cellular age. The number clients remember longest, and the one that turns a first appointment into the start of a program.</p><div class="ov">Δ vs CALENDAR AGE · FLAGGED</div></div>
-      <div class="ocard tilt reveal" data-d="3"><div class="ol">OUTPUT 03</div><h3>Precision Protocol</h3><p>The exact service, treatment or product match — compiled from the scan, not selected from a menu. The recommendation is now a readout.</p><div class="ov">MATCHED TO SCAN · NOT TO OPINION</div></div>
+      <div class="ocard reveal" data-d="1"><div class="ol">OUTPUT 01</div><h3>Skin Score</h3><p>Health, quantified. A single number the client can track — and watch move — over time. It turns "it's better" into "74 → 82".</p><div class="ov">SCALE · 0–100 · TRACKED PER SESSION</div></div>
+      <div class="ocard reveal" data-d="2"><div class="ol">OUTPUT 02</div><h3>Biological Age</h3><p>Not calendar age — cellular age. The number clients remember longest, and the one that turns a first appointment into the start of a program.</p><div class="ov">Δ vs CALENDAR AGE · FLAGGED</div></div>
+      <div class="ocard reveal" data-d="3"><div class="ol">OUTPUT 03</div><h3>Precision Protocol</h3><p>The exact service, treatment or product match — compiled from the scan, not selected from a menu. The recommendation is now a readout.</p><div class="ov">MATCHED TO SCAN · NOT TO OPINION</div></div>
       <div class="unit reveal" data-d="4"><div class="ol">HARDWARE</div><h3>UNIT <span class="red">[REDACTED]</span></h3><p>The imaging core is Korean high-imaging tech, paired with software trained specifically for Indian skin. What the machine looks like is held under NDA — until you're in the room.</p><div class="stripe">▓▓▓▓ CLASSIFIED ▓▓▓▓</div></div>
     </div>
     <div class="specs reveal" data-d="3">
@@ -487,10 +478,10 @@ body.comfy .lenshint{font-size:15.5px}
           <span class="fp-label fp-bl" id="fpLock">LOCK · AWAITING RUN</span>
         </div>
         <div class="subjrow">
-          <button class="subj on magnet" data-s="0">S-01 · URBAN · 29F</button>
-          <button class="subj magnet" data-s="1">S-02 · CLINIC · 44M</button>
-          <button class="subj magnet" data-s="2">S-03 · SENSITIVE · 35F</button>
-          <button class="btn p magnet" id="runBtn" style="margin-left:auto">▶ RUN SCAN</button>
+          <button class="subj on " data-s="0">S-01 · URBAN · 29F</button>
+          <button class="subj " data-s="1">S-02 · CLINIC · 44M</button>
+          <button class="subj " data-s="2">S-03 · SENSITIVE · 35F</button>
+          <button class="btn p " id="runBtn" style="margin-left:auto">▶ RUN SCAN</button>
         </div>
       </div>
       <div class="sidepanel">
@@ -519,19 +510,19 @@ body.comfy .lenshint{font-size:15.5px}
 
     <div class="lenspick reveal" data-d="2">
       <div class="lenspick-label">TAP THE ONE THAT'S YOU</div>
-      <button class="lensbig on magnet" data-l="salon"><span class="lb-ic">◇</span><span class="lb-t">I own or run a <b>salon</b></span><span class="lb-d">I want more facial bookings, higher bills, and clients who come back.</span></button>
-      <button class="lensbig magnet" data-l="clinic"><span class="lb-ic">✚</span><span class="lb-t">I run a <b>skin clinic</b></span><span class="lb-d">I want patients to trust the treatment plan, say yes more often, and come back.</span></button>
-      <button class="lensbig magnet" data-l="brand"><span class="lb-ic">▣</span><span class="lb-t">I have a <b>treatment brand</b></span><span class="lb-d">I want my products to be the ones clinicians and salons actually recommend.</span></button>
+      <button class="lensbig on " data-l="salon"><span class="lb-ic">◇</span><span class="lb-t">I own or run a <b>salon</b></span><span class="lb-d">I want more facial bookings, higher bills, and clients who come back.</span></button>
+      <button class="lensbig " data-l="clinic"><span class="lb-ic">✚</span><span class="lb-t">I run a <b>skin clinic</b></span><span class="lb-d">I want patients to trust the treatment plan, say yes more often, and come back.</span></button>
+      <button class="lensbig " data-l="brand"><span class="lb-ic">▣</span><span class="lb-t">I have a <b>treatment brand</b></span><span class="lb-d">I want my products to be the ones clinicians and salons actually recommend.</span></button>
       <p class="lenshint">👉 <b>Just tap one</b> — the numbers below will change to show what this machine can do for <b>your</b> business.</p>
     </div>
 
     <div class="lensview on" id="lv-salon">
       <div class="lv-h">Your salon stops selling facials on trust. It starts <span class="hl">winning them on data.</span></div>
       <div class="mgrid">
-        <div class="mcard tilt reveal in" data-d="1"><span class="proj">TARGET</span><div class="mv" data-cnt="1.4" data-dec="1" data-suf="×">0</div><div class="ml">FACIAL<br>CONVERSION RATE</div></div>
-        <div class="mcard tilt reveal in" data-d="2"><span class="proj">TARGET</span><div class="mv" data-cnt="28" data-suf="%">0</div><div class="ml">AVG TICKET UPLIFT<br>ON RECOMMENDED ADD-ONS</div></div>
-        <div class="mcard tilt reveal in" data-d="3"><span class="proj">TARGET</span><div class="mv" data-cnt="35" data-suf="%">0</div><div class="ml">CLIENT RETENTION LIFT<br>ON SCORE-DRIVEN PLANS</div></div>
-        <div class="mcard tilt reveal in" data-d="4"><span class="proj">INCLUDED</span><div class="mv" data-cnt="100" data-suf="%">0</div><div class="ml">STAFF TRAINED<br>ONE-ON-ONE</div></div>
+        <div class="mcard reveal in" data-d="1"><span class="proj">TARGET</span><div class="mv" data-cnt="1.4" data-dec="1" data-suf="×">0</div><div class="ml">FACIAL<br>CONVERSION RATE</div></div>
+        <div class="mcard reveal in" data-d="2"><span class="proj">TARGET</span><div class="mv" data-cnt="28" data-suf="%">0</div><div class="ml">AVG TICKET UPLIFT<br>ON RECOMMENDED ADD-ONS</div></div>
+        <div class="mcard reveal in" data-d="3"><span class="proj">TARGET</span><div class="mv" data-cnt="35" data-suf="%">0</div><div class="ml">CLIENT RETENTION LIFT<br>ON SCORE-DRIVEN PLANS</div></div>
+        <div class="mcard reveal in" data-d="4"><span class="proj">INCLUDED</span><div class="mv" data-cnt="100" data-suf="%">0</div><div class="ml">STAFF TRAINED<br>ONE-ON-ONE</div></div>
       </div>
       <div class="changet reveal in" data-d="3"><h3>What changes on your floor</h3><ul>
         <li><b>Every consultation starts with a readout</b> — the client sees their Skin Score and Biological Age before picking a service. Trust is demonstrated, not claimed.</li>
@@ -539,16 +530,16 @@ body.comfy .lenshint{font-size:15.5px}
         <li><b>Retention becomes visible</b> — clients rebook to watch their number move. The score is the habit.</li>
       </ul></div>
       <div class="lensfoot">TARGETS ARE PLANNING FIGURES · VALIDATED WITH YOUR P&amp;L DURING THE PRIVATE DEMO</div>
-      <div class="lensnext"><a class="btn p magnet" href="#ask">SEE THE MACHINE →</a><a class="btn magnet" href="tel:+919650804836">☎ TALK TO THE TEAM</a></div>
+      <div class="lensnext"><a class="btn p " href="#ask">SEE THE MACHINE →</a><a class="btn " href="tel:+919650804836">☎ TALK TO THE TEAM</a></div>
     </div>
 
     <div class="lensview" id="lv-clinic">
       <div class="lv-h">Your patients will arrive <span class="hl">already read.</span> The consult starts at treatment, not triage.</div>
       <div class="mgrid">
-        <div class="mcard tilt reveal in" data-d="1"><span class="proj">TARGET</span><div class="mv" data-cnt="35" data-suf="%">0</div><div class="ml">TREATMENT ACCEPTANCE UPLIFT<br>ON DATA-BACKED PLANS</div></div>
-        <div class="mcard tilt reveal in" data-d="2"><span class="proj">TARGET</span><div class="mv" data-cnt="40" data-suf="%">0</div><div class="ml">FASTER CONSULTS<br>PRE-READ DATA PACK</div></div>
-        <div class="mcard tilt reveal in" data-d="3"><span class="proj">TARGET</span><div class="mv" data-cnt="100" data-suf="%">0</div><div class="ml">OUTCOMES DOCUMENTED<br>&amp; TRACKED, PRE/POST</div></div>
-        <div class="mcard tilt reveal in" data-d="4"><span class="proj">DEPTH</span><div class="mv" data-cnt="41">0</div><div class="ml">BIOMARKERS<br>PER PATIENT, PER VISIT</div></div>
+        <div class="mcard reveal in" data-d="1"><span class="proj">TARGET</span><div class="mv" data-cnt="35" data-suf="%">0</div><div class="ml">TREATMENT ACCEPTANCE UPLIFT<br>ON DATA-BACKED PLANS</div></div>
+        <div class="mcard reveal in" data-d="2"><span class="proj">TARGET</span><div class="mv" data-cnt="40" data-suf="%">0</div><div class="ml">FASTER CONSULTS<br>PRE-READ DATA PACK</div></div>
+        <div class="mcard reveal in" data-d="3"><span class="proj">TARGET</span><div class="mv" data-cnt="100" data-suf="%">0</div><div class="ml">OUTCOMES DOCUMENTED<br>&amp; TRACKED, PRE/POST</div></div>
+        <div class="mcard reveal in" data-d="4"><span class="proj">DEPTH</span><div class="mv" data-cnt="41">0</div><div class="ml">BIOMARKERS<br>PER PATIENT, PER VISIT</div></div>
       </div>
       <div class="changet reveal in" data-d="3"><h3>What changes in the chair</h3><ul>
         <li><b>The patient arrives pre-read</b> — hydration, pigment, UV damage and barrier state compiled before the derm sits down. The consult starts at treatment, not triage.</li>
@@ -556,16 +547,16 @@ body.comfy .lenshint{font-size:15.5px}
         <li><b>Outcomes get a record</b> — pre/post Skin Score deltas document efficacy. A defensible clinical file, and a referral engine.</li>
       </ul></div>
       <div class="lensfoot">TARGETS ARE PLANNING FIGURES · VALIDATED WITH YOUR CLINIC'S FUNNEL DURING THE PRIVATE DEMO</div>
-      <div class="lensnext"><a class="btn p magnet" href="#ask">SEE THE MACHINE →</a><a class="btn magnet" href="tel:+919650804836">☎ TALK TO THE TEAM</a></div>
+      <div class="lensnext"><a class="btn p " href="#ask">SEE THE MACHINE →</a><a class="btn " href="tel:+919650804836">☎ TALK TO THE TEAM</a></div>
     </div>
 
     <div class="lensview" id="lv-brand">
       <div class="lv-h">Your products stop competing for attention. They start <span class="hl">winning by data.</span></div>
       <div class="mgrid">
-        <div class="mcard tilt reveal in" data-d="1"><span class="proj">TARGET</span><div class="mv" data-cnt="2.5" data-dec="1" data-suf="×">0</div><div class="ml">ATTACH RATE<br>SCAN-MATCHED VS GENERIC</div></div>
-        <div class="mcard tilt reveal in" data-d="2"><span class="proj">SIGNAL</span><div class="mv" data-cnt="100" data-suf="%">0</div><div class="ml">IN-STORE DEMO →<br>RETAILER ADOPTION</div></div>
-        <div class="mcard tilt reveal in" data-d="3"><span class="proj">DATA</span><div class="mv" data-cnt="41">0</div><div class="ml">MARKERS → IN-STORE<br>RECOMMENDATION ENGINE</div></div>
-        <div class="mcard tilt reveal in" data-d="4"><span class="proj">REACH</span><div class="mv" data-cnt="3">0</div><div class="ml">CHANNELS UNLOCKED<br>RETAIL · SALON · CLINIC</div></div>
+        <div class="mcard reveal in" data-d="1"><span class="proj">TARGET</span><div class="mv" data-cnt="2.5" data-dec="1" data-suf="×">0</div><div class="ml">ATTACH RATE<br>SCAN-MATCHED VS GENERIC</div></div>
+        <div class="mcard reveal in" data-d="2"><span class="proj">SIGNAL</span><div class="mv" data-cnt="100" data-suf="%">0</div><div class="ml">IN-STORE DEMO →<br>RETAILER ADOPTION</div></div>
+        <div class="mcard reveal in" data-d="3"><span class="proj">DATA</span><div class="mv" data-cnt="41">0</div><div class="ml">MARKERS → IN-STORE<br>RECOMMENDATION ENGINE</div></div>
+        <div class="mcard reveal in" data-d="4"><span class="proj">REACH</span><div class="mv" data-cnt="3">0</div><div class="ml">CHANNELS UNLOCKED<br>RETAIL · SALON · CLINIC</div></div>
       </div>
       <div class="changet reveal in" data-d="3"><h3>What changes on the shelf</h3><ul>
         <li><b>Your product wins the recommendation</b> — when the scan flags a barrier deficit, your repair line is the protocol. Adoption is earned by data, not placement fees.</li>
@@ -573,7 +564,7 @@ body.comfy .lenshint{font-size:15.5px}
         <li><b>You own the consumer's baseline</b> — the Skin Score is a brand-neutral health number. The brand attached to its improvement is yours.</li>
       </ul></div>
       <div class="lensfoot">TARGETS ARE PLANNING FIGURES · VALIDATED AGAINST YOUR SKU MIX DURING THE PRIVATE DEMO</div>
-      <div class="lensnext"><a class="btn p magnet" href="#ask">SEE THE MACHINE →</a><a class="btn magnet" href="tel:+919650804836">☎ TALK TO THE TEAM</a></div>
+      <div class="lensnext"><a class="btn p " href="#ask">SEE THE MACHINE →</a><a class="btn " href="tel:+919650804836">☎ TALK TO THE TEAM</a></div>
     </div>
   </div>
 </section>
@@ -585,12 +576,12 @@ body.comfy .lenshint{font-size:15.5px}
     <h2 class="reveal"><span class="mline"><span>Nothing here is a render.</span></span><span class="mline"><span><span class="g scr" data-text="Unlock the real thing.">Unlock the real thing.</span></span></span></h2>
     <p class="lead reveal" data-d="1">Genuine launches, genuine partnerships, genuine client scans — live on the Cyphr channel, one click away. Nothing visible at a glance. Tap a sealed file.</p>
     <div class="vgrid">
-      <div class="vcard tilt reveal" data-d="1" data-url="https://www.instagram.com/reel/Dbuvv4iT5kb/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 01<br>LAUNCH TRANSMISSION</div></div><div class="vmeta"><div class="vt">08 · 2026</div><h4>It's finally here — Cyphr.Skin AI Skin Analysis, live</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
-      <div class="vcard tilt reveal" data-d="2" data-url="https://www.instagram.com/reel/DeHNUU1TdXp/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 02<br>FIELD DEPLOYMENT</div></div><div class="vmeta"><div class="vt">10 · 2026</div><h4>Looks Salon partnership — AI consultations, team trained</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
-      <div class="vcard tilt reveal" data-d="3" data-url="https://www.instagram.com/reel/DZg6m8TzWaC/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 03<br>THE PROTOCOL</div></div><div class="vmeta"><div class="vt">06 · 2026</div><h4>What does Cyphr actually do? Decoding the invisible</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
-      <div class="vcard tilt reveal" data-d="1" data-url="https://www.instagram.com/reel/DauTsy0z_jm/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 04<br>THE STAKES</div></div><div class="vmeta"><div class="vt">07 · 2026</div><h4>Stop skin-cycling someone else's routine</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
-      <div class="vcard tilt reveal" data-d="2" data-url="https://www.instagram.com/p/DZEpPtNEzHs/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 05<br>THE THESIS</div></div><div class="vmeta"><div class="vt">06 · 2026</div><h4>Your feed is full of promises. Your mirror is full of questions.</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
-      <div class="vcard main tilt reveal" data-d="3" data-url="https://www.instagram.com/cyphr.skin/"><div class="vph"><div class="lock"><span class="lk">◈</span>OPEN SIGNAL<br>ALL TRANSMISSIONS</div></div><div class="vmeta"><div class="vall"><div class="h">@cyphr.skin</div><div class="vx">1,500+ FOLLOWERS · 72 POSTS<br><b>FOLLOW THE BUILD ↗</b></div></div></div></div>
+      <div class="vcard reveal" data-d="1" data-url="https://www.instagram.com/reel/Dbuvv4iT5kb/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 01<br>LAUNCH TRANSMISSION</div></div><div class="vmeta"><div class="vt">08 · 2026</div><h4>It's finally here — Cyphr.Skin AI Skin Analysis, live</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
+      <div class="vcard reveal" data-d="2" data-url="https://www.instagram.com/reel/DeHNUU1TdXp/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 02<br>FIELD DEPLOYMENT</div></div><div class="vmeta"><div class="vt">10 · 2026</div><h4>Looks Salon partnership — AI consultations, team trained</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
+      <div class="vcard reveal" data-d="3" data-url="https://www.instagram.com/reel/DZg6m8TzWaC/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 03<br>THE PROTOCOL</div></div><div class="vmeta"><div class="vt">06 · 2026</div><h4>What does Cyphr actually do? Decoding the invisible</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
+      <div class="vcard reveal" data-d="1" data-url="https://www.instagram.com/reel/DauTsy0z_jm/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 04<br>THE STAKES</div></div><div class="vmeta"><div class="vt">07 · 2026</div><h4>Stop skin-cycling someone else's routine</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
+      <div class="vcard reveal" data-d="2" data-url="https://www.instagram.com/p/DZEpPtNEzHs/"><div class="vph"><div class="lock"><span class="lk">⬡</span>SEAL 05<br>THE THESIS</div></div><div class="vmeta"><div class="vt">06 · 2026</div><h4>Your feed is full of promises. Your mirror is full of questions.</h4><div class="vx">STATUS · <b>DECRYPT ↗</b></div></div></div>
+      <div class="vcard main reveal" data-d="3" data-url="https://www.instagram.com/cyphr.skin/"><div class="vph"><div class="lock"><span class="lk">◈</span>OPEN SIGNAL<br>ALL TRANSMISSIONS</div></div><div class="vmeta"><div class="vall"><div class="h">@cyphr.skin</div><div class="vx">1,500+ FOLLOWERS · 72 POSTS<br><b>FOLLOW THE BUILD ↗</b></div></div></div></div>
     </div>
   </div>
 </section>
@@ -601,8 +592,8 @@ body.comfy .lenshint{font-size:15.5px}
     <div class="kick"><span class="scr" data-text="IN THE FIELD // 06">IN THE FIELD // 06</span></div>
     <h2 class="reveal"><span class="mline"><span>This isn't a slide.</span></span><span class="mline"><span><span class="g scr" data-text="It's running.">It's running.</span></span></span></h2>
     <div class="livegrid">
-      <div class="lcard tilt reveal" data-d="1"><div class="ol">ACTIVE DEPLOYMENT</div><div class="big">Looks Salon</div><p>First live partnership in Delhi. Every client gets a Skin Score, Biological Age and a read of their needs <i>before</i> choosing a facial — and every staff member was trained one-on-one.</p></div>
-      <div class="lcard tilt reveal" data-d="2"><div class="ol">THE STANDARD</div><div class="big">&lt; 30 sec</div><p>From subject to compiled protocol. Shorter than the small talk a manual consult burns. The scan is the new first five minutes of every relationship with skin.</p></div>
+      <div class="lcard reveal" data-d="1"><div class="ol">ACTIVE DEPLOYMENT</div><div class="big">Looks Salon</div><p>First live partnership in Delhi. Every client gets a Skin Score, Biological Age and a read of their needs <i>before</i> choosing a facial — and every staff member was trained one-on-one.</p></div>
+      <div class="lcard reveal" data-d="2"><div class="ol">THE STANDARD</div><div class="big">&lt; 30 sec</div><p>From subject to compiled protocol. Shorter than the small talk a manual consult burns. The scan is the new first five minutes of every relationship with skin.</p></div>
     </div>
   </div>
 </section>
@@ -628,9 +619,9 @@ body.comfy .lenshint{font-size:15.5px}
     <h2 class="reveal"><span class="mline"><span>The door is open.</span></span><span class="mline"><span><span class="g">The machine stays sealed</span></span></span><span class="mline"><span><span class="g">until you're in the room.</span></span></span></h2>
     <p class="lead reveal" data-d="1">The next step is one private demo: your subject, your numbers, your P&amp;L — the readout you'll actually run, rendered live. After that, you see the unit.</p>
     <div class="cta reveal" data-d="2">
-      <a class="btn p magnet" href="tel:+919650804836">☎ BOOK THE PRIVATE DEMO</a>
-      <a class="btn magnet" href="https://wa.me/919650804836?text=Hi%20Cyphr%20team%20—%20I%27d%20like%20to%20see%20the%20machine%20in%20person." target="_blank" rel="noopener">◉ WHATSAPP US</a>
-      <a class="btn magnet" href="mailto:cyphrskin@gmail.com?subject=Private%20Demo%20Request">✉ EMAIL THE TEAM</a>
+      <a class="btn p " href="tel:+919650804836">☎ BOOK THE PRIVATE DEMO</a>
+      <a class="btn " href="https://wa.me/919650804836?text=Hi%20Cyphr%20team%20—%20I%27d%20like%20to%20see%20the%20machine%20in%20person." target="_blank" rel="noopener">◉ WHATSAPP US</a>
+      <a class="btn " href="mailto:cyphrskin@gmail.com?subject=Private%20Demo%20Request">✉ EMAIL THE TEAM</a>
     </div>
     <div class="founder reveal" data-d="3">
       <div class="f-avatar">AJ</div>
@@ -645,8 +636,8 @@ body.comfy .lenshint{font-size:15.5px}
         </div>
       </div>
       <div class="f-cta">
-        <a class="btn p magnet" href="https://www.linkedin.com/search/results/people/?keywords=Akanksha%20Jain%20Cyphr%20Skin" target="_blank" rel="noopener">CONNECT ON LINKEDIN</a>
-        <button class="btn magnet" data-copy="+91 96508 04836">⧉ COPY NUMBER</button>
+        <a class="btn p " href="https://www.linkedin.com/search/results/people/?keywords=Akanksha%20Jain%20Cyphr%20Skin" target="_blank" rel="noopener">CONNECT ON LINKEDIN</a>
+        <button class="btn " data-copy="+91 96508 04836">⧉ COPY NUMBER</button>
       </div>
     </div>
     <p class="asknote reveal" data-d="4">PRIVATE DEMO · SELECT DELHI PARTNERSHIPS · HARDWARE DISCLOSURE <b>IN-ROOM ONLY</b></p>
@@ -885,38 +876,7 @@ function fireHero(){
   up(); setInterval(up,1000);
 })();
 
-/* ---------------- custom cursor + magnetic + tilt ---------------- */
-(function(){
-  var hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-  if(hasTouch) return; // skip all cursor/magnet/tilt on touch devices
-  var cur=document.getElementById('cursor'), dot=document.getElementById('cursorDot');
-  var cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;
-  addEventListener('pointermove',function(e){
-    tx=e.clientX; ty=e.clientY;
-    dot.style.left=tx+'px'; dot.style.top=ty+'px';
-    var h=e.target.closest&&e.target.closest('a,button,.tilt,.vcard,.lensbig,.subj');
-    cur.classList.toggle('hot',!!h);
-  },{passive:true});
-  (function loop(){ cx+=(tx-cx)*.16; cy+=(ty-cy)*.16; cur.style.left=cx+'px'; cur.style.top=cy+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('.magnet').forEach(function(el){
-    el.addEventListener('pointermove',function(e){
-      var r=el.getBoundingClientRect();
-      var mx=(e.clientX-r.left-r.width/2)/r.width, my=(e.clientY-r.top-r.height/2)/r.height;
-      el.style.transform='translate('+(mx*10)+'px,'+(my*8)+'px)';
-      Snd.blip(1400);
-    });
-    el.addEventListener('pointerleave',function(){ el.style.transform=''; });
-  });
-  document.querySelectorAll('.tilt').forEach(function(el){
-    el.addEventListener('pointermove',function(e){
-      var r=el.getBoundingClientRect();
-      var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-      el.style.transform='perspective(700px) rotateX('+(-py*7)+'deg) rotateY('+(px*7)+'deg) translateY(-4px)';
-    });
-    el.addEventListener('pointerleave',function(){ el.style.transform=''; });
-    el.addEventListener('click',function(){Snd.tick();});
-  });
-})();
+/* ============ INTERSECTION OBSERVER ============ */
 
 /* ---------------- scramble headings ---------------- */
 (function(){
