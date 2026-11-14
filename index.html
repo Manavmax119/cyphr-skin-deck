@@ -57,13 +57,11 @@ body.locked{overflow:hidden}
 /* ============ MOBILE TOUCH FIX ============ */
 a,button,.lensbig,.subj,.bbtn,.chipbtn,.rail a,.tcontact,.dockpanel{
   position:relative; z-index:5;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
+.grain{display:none}
 @media (pointer:coarse){
-  a,button,.lensbig,.subj,.bbtn,.chipbtn,.rail a,.tcontact,.dockpanel{
-    -webkit-tap-highlight-color:transparent;
-    touch-action:manipulation;
-  }
-  .grain{display:none}
   .aurora{display:none}
   .reveal{opacity:1!important;transform:none!important;transition:none!important}
 }
