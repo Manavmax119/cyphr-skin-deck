@@ -684,6 +684,7 @@ body.comfy .lenshint{font-size:15.5px}
   <button class="dockmain" id="dockbtn"><span class="ic">☎</span> CONTACT</button>
 </div>
 <div id="toast">COPIED</div>
+<div id="tapLog" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9999;background:#0c241f;border:1px solid #1d5f4e;color:#4de3ff;font-family:monospace;font-size:11px;padding:8px 16px;border-radius:8px;opacity:0;transition:opacity .3s;pointer-events:none;"></div>
 
 <!-- MODAL -->
 <div id="modal">
@@ -704,6 +705,24 @@ body.comfy .lenshint{font-size:15.5px}
 var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------------- audio engine ---------------- */
+/* ============ TAP DEBUG LOGGER ============ */
+(function(){
+  var log = document.getElementById('tapLog');
+  var count = 0;
+  document.addEventListener('click', function(e) {
+    count++;
+    var target = e.target;
+    var tag = target.tagName.toLowerCase();
+    var cls = target.className ? '.' + target.className.split(' ').slice(0,2).join('.') : '';
+    var text = target.textContent ? target.textContent.trim().slice(0,20) : '';
+    log.textContent = '#' + count + ' ' + tag + cls + ' → "' + text + '"';
+    log.style.opacity = '1';
+    clearTimeout(log._t);
+    log._t = setTimeout(function(){ log.style.opacity = '0'; }, 2000);
+    console.log('TAP #' + count, tag + cls, '→', text);
+  }, true); // use capture phase to see ALL clicks
+})();
+
 var Snd = {
   ctx:null, master:null, droneG:null, on:false,
   init:function(){
