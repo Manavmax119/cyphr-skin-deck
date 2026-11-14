@@ -887,7 +887,8 @@ function fireHero(){
 
 /* ---------------- custom cursor + magnetic + tilt ---------------- */
 (function(){
-  if(matchMedia('(pointer:coarse)').matches) return;
+  var hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  if(hasTouch) return; // skip all cursor/magnet/tilt on touch devices
   var cur=document.getElementById('cursor'), dot=document.getElementById('cursorDot');
   var cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;
   addEventListener('pointermove',function(e){
