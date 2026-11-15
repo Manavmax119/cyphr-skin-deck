@@ -177,6 +177,8 @@ body:not(.ready) #hero .reveal{opacity:0;transform:translateY(26px)}
 .sweep.go{opacity:1;animation:sweepRun 2.3s ease-in-out}
 @keyframes sweepRun{0%{top:-16%}58%{top:94%}100%{top:94%}}
 .subjrow{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.runrow{margin-top:14px}
+.runrow .btn{width:100%;justify-content:center;padding:16px 24px;font-size:12px}
 .subj{font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:10px 15px;border-radius:9px;border:1px solid var(--line2);background:#0e0e1c;color:var(--dim);transition:all .3s}
 .subj:hover{border-color:var(--cyan);color:var(--cyan)}
 .subj.on{border-color:var(--teal);color:var(--teal);background:#08141a;box-shadow:0 0 20px -6px rgba(46,230,200,.6)}
@@ -207,7 +209,7 @@ body:not(.ready) #hero .reveal{opacity:0;transform:translateY(26px)}
 .lensbig .lb-t{font-family:var(--disp);font-size:clamp(19px,2.4vw,26px);font-weight:600;color:var(--ink)}
 .lensbig .lb-t b{color:var(--teal);font-weight:700}
 .lensbig .lb-d{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--faint);margin-top:4px}
-.lensbig::after{content:'';position:absolute;inset:0;background:radial-gradient(320px circle at 50% 0%,rgba(77,227,255,.14),transparent 62%);opacity:0;transition:opacity .3s;pointer-events:none}
+.lensbig::after{content:'';position:absolute;inset:0;background:radial-gradient(320px circle at 50% 0%,rgba(77,227,255,.14),transparent 62%);opacity:0;transition:opacity .3s;pointer-events:none!important}
 .lensbig:hover{border-color:var(--cyan);transform:translateY(-3px)}
 .lensbig:hover::after{opacity:1}
 .lensbig.on{border-color:var(--teal);background:linear-gradient(180deg,#0d1a24,#0a1019);box-shadow:0 0 40px -10px rgba(46,230,200,.45)}
@@ -493,7 +495,9 @@ body.comfy .lenshint{font-size:15.5px}
           <button class="subj on " data-s="0">S-01 · URBAN · 29F</button>
           <button class="subj " data-s="1">S-02 · CLINIC · 44M</button>
           <button class="subj " data-s="2">S-03 · SENSITIVE · 35F</button>
-          <button class="btn p " id="runBtn" style="margin-left:auto">▶ RUN SCAN</button>
+        </div>
+        <div class="runrow">
+          <button class="btn p" id="runBtn">▶ RUN SCAN</button>
         </div>
       </div>
       <div class="sidepanel">
