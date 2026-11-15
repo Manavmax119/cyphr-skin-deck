@@ -730,18 +730,20 @@ var Snd = {
   ctx:null, master:null, droneG:null, on:false,
   init:function(){
     if(this.ctx) return;
-    var AC = window.AudioContext || window.webkitAudioContext;
-    if(!AC) return;
-    this.ctx = new AC();
-    this.master = this.ctx.createGain();
-    this.master.gain.value = 0.5;
-    this.master.connect(this.ctx.destination);
-    var o1=this.ctx.createOscillator(), o2=this.ctx.createOscillator();
-    o1.type='sine'; o2.type='sine'; o1.frequency.value=55; o2.frequency.value=110.4;
-    var f=this.ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=240;
-    this.droneG=this.ctx.createGain(); this.droneG.gain.value=0;
-    o1.connect(f); o2.connect(f); f.connect(this.droneG); this.droneG.connect(this.master);
-    o1.start(); o2.start();
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return;
+      this.ctx = new AC();
+      this.master = this.ctx.createGain();
+      this.master.gain.value = 0.5;
+      this.master.connect(this.ctx.destination);
+      var o1=this.ctx.createOscillator(), o2=this.ctx.createOscillator();
+      o1.type='sine'; o2.type='sine'; o1.frequency.value=55; o2.frequency.value=110.4;
+      var f=this.ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=240;
+      this.droneG=this.ctx.createGain(); this.droneG.gain.value=0;
+      o1.connect(f); o2.connect(f); f.connect(this.droneG); this.droneG.connect(this.master);
+      o1.start(); o2.start();
+    } catch(e) { console.warn('audio init failed', e); }
   },
   setOn:function(v){
     this.on=v;
@@ -1156,18 +1158,20 @@ var Hero={started:false};
     document.getElementById(lid).textContent=val+'%';
     if(val<45){ f.classList.add('warn'); document.getElementById(lid).style.color='#ffb454'; }
   }
-  runBtn.addEventListener('click',function(){
-    if(running) return;
-    running=true;
-    var p=profiles[cur];
-    runBtn.textContent='… SCANNING'; runBtn.style.opacity=.6;
-    document.getElementById('fpState').textContent='SCANNING';
-    document.getElementById('fpLock').textContent='LOCK · '+p.tag;
-    term.innerHTML='&gt; subject S-0'+(cur+1)+' locked <span class="hd">OK</span><br>&gt; scanning…';
-    sweep.classList.remove('go'); void sweep.offsetWidth; sweep.classList.add('go');
-    Snd.sweep();
-    var li=0;
-    var iv=setInterval(function(){
+  runBtn.addEventListener('click',function(e){
+    e.preventDefault();
+    try {
+      if(running) return;
+      running=true;
+      var p=profiles[cur];
+      runBtn.textContent='… SCANNING'; runBtn.style.opacity=.6;
+      document.getElementById('fpState').textContent='SCANNING';
+      document.getElementById('fpLock').textContent='LOCK · '+p.tag;
+      term.innerHTML='&gt; subject S-0'+(cur+1)+' locked <span class="hd">OK</span><br>&gt; scanning…';
+      sweep.classList.remove('go'); void sweep.offsetWidth; sweep.classList.add('go');
+      try { Snd.sweep(); } catch(err) {}
+      var li=0;
+      var iv=setInterval(function(){
       if(li<p.logs.length){
         term.innerHTML=p.logs.slice(0,li+1).join('<br>')+'<br><span style="color:#4de3ff">▌</span>';
         li++; Snd.tick();
@@ -1209,15 +1213,18 @@ var Hero={started:false};
     requestAnimationFrame(step);
   }
   document.querySelectorAll('.lensbig').forEach(function(b){
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.lensbig').forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on');
-      document.querySelectorAll('.lensview').forEach(function(v){v.classList.remove('on');});
-      var v=document.getElementById('lv-'+b.dataset.l);
-      v.classList.add('on');
-      v.querySelectorAll('.mv').forEach(runCnt);
-      Snd.chime();
-      b.blur();
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      try {
+        document.querySelectorAll('.lensbig').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        document.querySelectorAll('.lensview').forEach(function(v){v.classList.remove('on');});
+        var v=document.getElementById('lv-'+b.dataset.l);
+        if(v) v.classList.add('on');
+        v.querySelectorAll('.mv').forEach(runCnt);
+        try { Snd.chime(); } catch(err) {}
+        b.blur();
+      } catch(err) { console.error('lens error', err); }
     });
   });
   var io=new IntersectionObserver(function(es){
