@@ -709,22 +709,21 @@ body.comfy .lenshint{font-size:15.5px}
 var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------------- audio engine ---------------- */
-/* ============ TAP DEBUG LOGGER ============ */
+/* ---------------- tap debug logger ---------------- */
 (function(){
   var log = document.getElementById('tapLog');
+  if (!log) return;
   var count = 0;
   document.addEventListener('click', function(e) {
     count++;
-    var target = e.target;
-    var tag = target.tagName.toLowerCase();
-    var cls = target.className ? '.' + target.className.split(' ').slice(0,2).join('.') : '';
-    var text = target.textContent ? target.textContent.trim().slice(0,20) : '';
-    log.textContent = '#' + count + ' ' + tag + cls + ' → "' + text + '"';
-    log.style.opacity = '1';
-    clearTimeout(log._t);
-    log._t = setTimeout(function(){ log.style.opacity = '0'; }, 2000);
-    console.log('TAP #' + count, tag + cls, '→', text);
-  }, true); // use capture phase to see ALL clicks
+    var t=e.target, tag=t.tagName.toLowerCase(), cls=t.className?'.'+t.className.split(' ').slice(0,2).join('.'):'', id=t.id?'#'+t.id:'';
+    var txt=t.textContent?t.textContent.trim().slice(0,20):'';
+    log.textContent='#'+count+' '+tag+cls+id+' "'+txt+'"';
+    log.style.opacity='1'; clearTimeout(log._t);
+    log._t=setTimeout(function(){log.style.opacity='0';},3000);
+    console.log('CLICK #'+count, tag+cls+id, txt);
+  }, true);
+})();
 })();
 
 var Snd = {
