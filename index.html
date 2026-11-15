@@ -885,13 +885,15 @@ document.getElementById('sfxChip').addEventListener('click',function(){ Snd.init
     },24);
   }
   function enter(withSfx){
-    Snd.init();
-    if(withSfx){ Snd.setOn(true); Snd.whoosh(); setTimeout(function(){Snd.sweep();},500); }
-    document.getElementById('boot').classList.add('off');
-    document.body.classList.add('ready');
-    document.body.classList.remove('locked');
-    setTimeout(function(){ if(!withSfx) Snd.setOn(false); },900);
-    fireHero();
+    try { Snd.init(); } catch(e) {}
+    try { if(withSfx){ Snd.setOn(true); Snd.whoosh(); setTimeout(function(){Snd.sweep();},500); } } catch(e) {}
+    try {
+      document.getElementById('boot').classList.add('off');
+      document.body.classList.add('ready');
+      document.body.classList.remove('locked');
+      setTimeout(function(){ if(!withSfx) Snd.setOn(false); },900);
+      fireHero();
+    } catch(e) { console.error('enter error', e); }
   }
   document.getElementById('enterSfx').addEventListener('click',function(){enter(true);});
   document.getElementById('enterSilent').addEventListener('click',function(){enter(false);});
