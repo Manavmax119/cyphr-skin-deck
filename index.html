@@ -1197,7 +1197,8 @@ var Hero={started:false};
         }, 600+p.proto.length*260);
       }
     },430);
-  });
+  } catch(err) { console.error('scan error', err); }
+});
 })();
 
 /* ---------------- lens + countups ---------------- */
