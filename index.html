@@ -376,7 +376,7 @@ body.comfy .lenshint{font-size:15.5px}
 </div>
 <div class="rail" id="rail"></div>
 <div class="chiprow">
-  <div id="sfxChip" class="chipbtn" title="toggle synthesized audio field"><span class="d"></span>AUDIO · OFF</div>
+  <div id="sfxChip" class="chipbtn" title="toggle synthesized audio field"><span class="d"></span>AUDIO · AUTO</div>
   <div id="comfyChip" class="chipbtn" title="bigger text, slower motion"><span class="d"></span>A+ COMFORT</div>
 </div>
 
@@ -775,6 +775,28 @@ function updateSfxChip(){
   c.innerHTML='<span class="d"></span>AUDIO · '+(Snd.on?'ON':'OFF');
 }
 document.getElementById('sfxChip').addEventListener('click',function(){ Snd.init(); Snd.setOn(!Snd.on); if(!Snd.on) Snd.tick(); });
+
+/* ---------------- audio ON by default: starts on first interaction ---------------- */
+(function(){
+  var settled=false;
+  function autoStart(){
+    if(settled) return;
+    try {
+      Snd.init();
+      if(Snd.on) { settled=true; return; }
+      Snd.setOn(true); Snd.whoosh(); setTimeout(function(){ Snd.sweep(); },500);
+      settled=true;
+    } catch(e) {}
+  }
+  ['pointerdown','keydown'].forEach(function(ev){
+    document.addEventListener(ev, function(e){
+      if(settled) return;
+      var t=e.target;
+      if(t && t.closest && t.closest('#sfxChip')){ settled=true; return; } /* user opted via chip — honor that choice */
+      autoStart();
+    }, true);
+  });
+})();
 
 /* ---------------- comfort mode ---------------- */
 (function(){
