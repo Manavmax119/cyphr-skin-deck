@@ -309,8 +309,8 @@ footer a{color:var(--cyan);text-decoration:none}
 footer a:hover{text-shadow:0 0 10px rgba(77,227,255,.5)}
 
 /* ============ CONTACT DOCK ============ */
-#dock{position:fixed;right:18px;bottom:18px;z-index:96;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
-.dockmain{display:flex;align-items:center;gap:10px;padding:15px 22px;border-radius:999px;border:1px solid var(--teal);background:#08141acc;backdrop-filter:blur(10px);color:var(--teal);font-family:var(--mono);font-size:11px;letter-spacing:.18em;position:relative;transition:all .3s}
+#dock{position:fixed;right:18px;bottom:18px;z-index:96;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:none}
+.dockmain{pointer-events:auto;display:flex;align-items:center;gap:10px;padding:15px 22px;border-radius:999px;border:1px solid var(--teal);background:#08141acc;backdrop-filter:blur(10px);color:var(--teal);font-family:var(--mono);font-size:11px;letter-spacing:.18em;position:relative;transition:all .3s}
 .dockmain .ic{font-size:16px}
 .dockmain::before{content:'';position:absolute;inset:-4px;border-radius:999px;border:1px solid var(--teal);opacity:.5;animation:ping 2.2s ease-out infinite}
 @keyframes ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.35);opacity:0}}
@@ -371,7 +371,9 @@ body.comfy .lenshint{font-size:15.5px}
   #dock{right:12px;bottom:12px}
   .dockmain{padding:13px 18px;font-size:10px}
   .dockpanel{width:min(300px,calc(100vw - 24px));right:0}
-  .chiprow{bottom:12px}
+  .chiprow{bottom:72px;gap:8px}
+  .chipbtn{font-size:9px;padding:8px 13px}
+  .subj{min-height:44px}
   .lensbig{padding:18px}
   .scrollcue{display:none}
 }
@@ -688,7 +690,6 @@ body.comfy .lenshint{font-size:15.5px}
   <button class="dockmain" id="dockbtn"><span class="ic">☎</span> CONTACT</button>
 </div>
 <div id="toast">COPIED</div>
-<div id="tapLog" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9999;background:#0c241f;border:1px solid #1d5f4e;color:#4de3ff;font-family:monospace;font-size:11px;padding:8px 16px;border-radius:8px;opacity:0;transition:opacity .3s;pointer-events:none;"></div>
 
 <!-- MODAL -->
 <div id="modal">
@@ -709,22 +710,6 @@ body.comfy .lenshint{font-size:15.5px}
 var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------------- audio engine ---------------- */
-/* ---------------- tap debug logger ---------------- */
-(function(){
-  var log = document.getElementById('tapLog');
-  if (!log) return;
-  var count = 0;
-  document.addEventListener('click', function(e) {
-    count++;
-    var t=e.target, tag=t.tagName.toLowerCase(), cls=t.className?'.'+t.className.split(' ').slice(0,2).join('.'):'', id=t.id?'#'+t.id:'';
-    var txt=t.textContent?t.textContent.trim().slice(0,20):'';
-    log.textContent='#'+count+' '+tag+cls+id+' "'+txt+'"';
-    log.style.opacity='1'; clearTimeout(log._t);
-    log._t=setTimeout(function(){log.style.opacity='0';},3000);
-    console.log('CLICK #'+count, tag+cls+id, txt);
-  }, true);
-})();
-
 var Snd = {
   ctx:null, master:null, droneG:null, on:false,
   init:function(){
