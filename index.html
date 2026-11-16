@@ -17,7 +17,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;overflow-x:hidden}
-body.locked{overflow:hidden}
 ::selection{background:var(--teal);color:var(--bg)}
 @media (pointer:fine){ body,a,button{cursor:none} }
 
@@ -55,7 +54,7 @@ body.locked{overflow:hidden}
 .chipbtn.on .d{background:var(--teal);box-shadow:0 0 8px var(--teal);animation:blip 1.6s infinite}
 
 /* ============ MOBILE TOUCH FIX ============ */
-a,button,.lensbig,.subj,.bbtn,.chipbtn,.rail a,.tcontact,.dockpanel{
+a,button,.lensbig,.subj,.chipbtn,.rail a,.tcontact,.dockpanel{
   position:relative; z-index:5;
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
@@ -65,25 +64,6 @@ a,button,.lensbig,.subj,.bbtn,.chipbtn,.rail a,.tcontact,.dockpanel{
   .aurora{display:none}
 }
 .reveal{opacity:1!important;transform:none!important;transition:none!important}
-
-/* ============ BOOT GATE ============ */
-#boot{position:fixed;inset:0;z-index:400;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s}
-#boot.off{opacity:0;visibility:hidden}
-.bootbox{width:min(560px,92vw);text-align:center;position:relative}
-.bootbox::before{content:'';position:absolute;inset:-80px;background:radial-gradient(circle,rgba(124,92,252,.14),transparent 60%);filter:blur(20px);pointer-events:none}
-.bootbox>*{position:relative;z-index:1}
-.boottitle{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.5em;color:#fff;margin-bottom:30px;text-shadow:0 0 30px rgba(124,92,252,.8)}
-.bootlog{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--faint);text-align:left;min-height:160px;line-height:2.1}
-.bootlog .ok{color:var(--teal)}.bootlog .cy{color:var(--cyan)}.bootlog .am{color:var(--amber)}
-.bootbtns{display:flex;gap:14px;justify-content:center;margin-top:36px;opacity:0;transition:opacity .8s}
-.bootbtns.on{opacity:1}
-.bbtn{font-family:var(--mono);font-size:11px;letter-spacing:.18em;padding:15px 30px;border-radius:10px;transition:all .3s}
-.bbtn.p{border:1px solid var(--teal);color:var(--teal);background:#08141a;box-shadow:0 0 0 0 rgba(46,230,200,.4);animation:pulseP 2.4s infinite}
-@keyframes pulseP{0%,100%{box-shadow:0 0 0 0 rgba(46,230,200,.35)}50%{box-shadow:0 0 34px 4px rgba(46,230,200,.3)}}
-.bbtn.p:hover{background:#0d2420;color:#fff;text-shadow:0 0 12px var(--teal)}
-.bbtn.g{border:1px solid var(--line2);color:var(--dim)}
-.bbtn.g:hover{border-color:var(--cyan);color:var(--cyan)}
-.bootnote{margin-top:18px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:#3a3f63}
 
 /* ============ SHARED TYPE ============ */
 section{position:relative;z-index:2;padding:110px 0}
@@ -383,23 +363,10 @@ body.comfy .lenshint{font-size:15.5px}
 }
 </style>
 </head>
-<body class="locked">
+<body class="ready">
 <div class="aurora"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div></div>
 <div class="grain"></div>
 <div id="prog"></div>
-
-<!-- BOOT GATE -->
-<div id="boot">
-  <div class="bootbox">
-    <div class="boottitle">CYPHR · SKIN CODE LAB</div>
-    <div class="bootlog" id="bootlog">&gt; <span class="cy">handshake</span> ... <span class="ok">OK</span></div>
-    <div class="bootbtns" id="bootbtns">
-      <button class="bbtn p" id="enterSfx">ENTER · SOUND ON</button>
-      <button class="bbtn g" id="enterSilent">ENTER · SILENT</button>
-    </div>
-    <div class="bootnote">SYNTHESIZED AUDIO FIELD · NO FILES · NO TRACKS</div>
-  </div>
-</div>
 
 <div class="topbar">
   <div class="brand">CYPHR<em>.</em>SKIN</div>
@@ -849,47 +816,15 @@ document.getElementById('sfxChip').addEventListener('click',function(){ Snd.init
   });
 })();
 
-/* ---------------- boot sequence ---------------- */
+/* ---------------- hero entry ---------------- */
 (function(){
-  var log=document.getElementById('bootlog'), btns=document.getElementById('bootbtns');
-  var lines=[
-    '<span class="cy">&gt; secure channel .......... </span><span class="ok">OK</span>',
-    '&gt; optics core ............. <span class="ok">LOADED</span>',
-    '&gt; kalman filter v4 ........ <span class="ok">CALIBRATED</span>',
-    '&gt; skin code index ......... <span class="am">41/41</span>',
-    '&gt; audio field ............. <span class="am">STANDBY · OPT-IN</span>'
-  ];
-  function type(i){
-    if(i>=lines.length){ btns.classList.add('on'); log.innerHTML=log.innerHTML.replace('▌',''); return; }
-    log.innerHTML=lines.slice(0,i).join('<br>');
-    var s=lines[i], n=0;
-    var iv=setInterval(function(){
-      n+=2;
-      log.innerHTML=lines.slice(0,i).join('<br>')+(i? '<br>':'')+(s.slice(0,n))+'<span style="color:var(--teal)">▌</span>';
-      if(Snd.on) Snd.tick();
-      if(n>=s.length){ clearInterval(iv); log.innerHTML=log.innerHTML.replace('▌',''); setTimeout(function(){type(i+1);},260); }
-    },24);
+  function fireHero(){
+    document.getElementById('hMega').classList.add('in');
+    var hero=document.getElementById('hero');
+    hero.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
   }
-  function enter(withSfx){
-    try { Snd.init(); } catch(e) {}
-    try { if(withSfx){ Snd.setOn(true); Snd.whoosh(); setTimeout(function(){Snd.sweep();},500); } } catch(e) {}
-    try {
-      document.getElementById('boot').classList.add('off');
-      document.body.classList.add('ready');
-      document.body.classList.remove('locked');
-      setTimeout(function(){ if(!withSfx) Snd.setOn(false); },900);
-      fireHero();
-    } catch(e) { console.error('enter error', e); }
-  }
-  document.getElementById('enterSfx').addEventListener('click',function(){enter(true);});
-  document.getElementById('enterSilent').addEventListener('click',function(){enter(false);});
-  if(reduced){ log.innerHTML=lines.join('<br>'); btns.classList.add('on'); } else { type(0); }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fireHero); } else { fireHero(); }
 })();
-function fireHero(){
-  document.getElementById('hMega').classList.add('in');
-  var hero=document.getElementById('hero');
-  hero.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
-}
 
 /* ---------------- clock ---------------- */
 (function(){
