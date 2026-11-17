@@ -20,6 +20,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1
 ::selection{background:var(--teal);color:var(--bg)}
 @media (pointer:fine){ body,a,button{cursor:none} }
 
+/* ============ CUSTOM CURSOR (fine pointers only) ============ */
+#curDot,#curRing{position:fixed;top:0;left:0;pointer-events:none;z-index:450;display:none;transform:translate(-50%,-50%);will-change:transform}
+@media (pointer:fine){ #curDot,#curRing{display:block} }
+#curDot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+#curRing{width:34px;height:34px;border-radius:50%;border:1px solid rgba(46,230,200,.55);transition:width .25s,height .25s,border-color .25s,background .25s;mix-blend-mode:screen}
+#curRing.hov{width:52px;height:52px;border-color:var(--cyan);background:rgba(77,227,255,.08)}
+#curDot.hov{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+
 /* ============ ATMOSPHERE ============ */
 .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .aurora .b{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;mix-blend-mode:screen;animation:drift 42s ease-in-out infinite alternate}
@@ -657,6 +665,8 @@ body.comfy .lenshint{font-size:15.5px}
   <button class="dockmain" id="dockbtn"><span class="ic">☎</span> CONTACT</button>
 </div>
 <div id="toast">COPIED</div>
+<div id="curDot"></div>
+<div id="curRing"></div>
 
 <!-- MODAL -->
 <div id="modal">
@@ -846,6 +856,30 @@ document.getElementById('sfxChip').addEventListener('click',function(){ Snd.init
     hero.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
   }
   if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',fireHero); } else { fireHero(); }
+})();
+
+/* ---------------- custom cursor ---------------- */
+(function(){
+  if(!matchMedia('(pointer:fine)').matches) return;
+  var dot=document.getElementById('curDot'), ring=document.getElementById('curRing');
+  if(!dot||!ring) return;
+  var mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my, shown=false;
+  addEventListener('pointermove', function(e){
+    mx=e.clientX; my=e.clientY;
+    if(!shown){ shown=true; rx=mx; ry=my; }
+    var hov=e.target && e.target.closest && e.target.closest('a,button,.lensbig,.subj,.vcard,.chipbtn,.rail a,.dockpanel .dp-row');
+    dot.classList.toggle('hov',!!hov);
+    ring.classList.toggle('hov',!!hov);
+  }, {passive:true});
+  document.addEventListener('mouseleave', function(){ shown=false; });
+  document.addEventListener('mouseenter', function(){ shown=true; });
+  (function loop(){
+    rx += (mx-rx)*0.16; ry += (my-ry)*0.16;
+    dot.style.transform='translate('+(mx-3)+'px,'+(my-3)+'px)';
+    ring.style.transform='translate('+(rx-ring.offsetWidth/2)+'px,'+(ry-ring.offsetHeight/2)+'px)';
+    ring.style.opacity = shown?1:0; dot.style.opacity = shown?1:0;
+    requestAnimationFrame(loop);
+  })();
 })();
 
 /* ---------------- clock ---------------- */
